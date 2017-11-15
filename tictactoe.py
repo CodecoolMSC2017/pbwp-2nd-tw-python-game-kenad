@@ -19,8 +19,10 @@ def getchar():
 
 class Board():
     def __init__(self):
-        self.cells = [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "]
+        self.cells = [" "," "," "," "," "," "," "," "," "," "]
         self.loading = [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "]
+        self.playerScore = [0,0]
+        self.playerScoreName = [" "," "]
 
     def loadingScreen(self):
         print("                     ╔═══════════════════════════════════════════════════════════╗")
@@ -39,18 +41,18 @@ class Board():
         print("                     ╚═══════════════════════════════════════════════════════════╝")
 
     def display(self):
-        print("                     ║             ╔═════════╦═════════╦═════════╗               ║")
-        print("                     ║             ║         ║         ║         ║               ║")
-        print("                     ║             ║    %s    ║    %s    ║    %s    ║               ║" % (self.cells[1], self.cells[2], self.cells[3]))
-        print("                     ║             ║         ║         ║         ║               ║")
-        print("                     ║             ╠═════════╬═════════╬═════════╣               ║")
-        print("                     ║             ║         ║         ║         ║               ║")
-        print("                     ║             ║    %s    ║    %s    ║    %s    ║               ║" % (self.cells[4], self.cells[5], self.cells[6]))
-        print("                     ║             ║         ║         ║         ║               ║")
-        print("                     ║             ╠═════════╬═════════╬═════════╣               ║")
-        print("                     ║             ║         ║         ║         ║               ║")
-        print("                     ║             ║    %s    ║    %s    ║    %s    ║               ║" %(self.cells[7], self.cells[8], self.cells[9]))
-        print("                     ║             ║         ║         ║         ║               ║")
+        print("                     ║             ╔═════════╦═════════╦═════════╗               ║ Player1: %s | Player2: %s" % (self.playerScoreName[0], self.playerScoreName[1]))
+        print("                     ║             ║         ║         ║         ║               ║ ╔═════════════════════════════════╗")
+        print("                     ║             ║    %s    ║    %s    ║    %s    ║               ║" % (self.cells[1], self.cells[2], self.cells[3]),"║                                 ║")
+        print("                     ║             ║         ║         ║         ║               ║ ║          --SCOREBOARD--         ║")
+        print("                     ║             ╠═════════╬═════════╬═════════╣               ║ ║                                 ║")
+        print("                     ║             ║         ║         ║         ║               ║ ║ ╔════════════╗   ╔════════════╗ ║")
+        print("                     ║             ║    %s    ║    %s    ║    %s    ║               ║" % (self.cells[4], self.cells[5], self.cells[6]),"║ ║  Player 1  ║    ║  Player 2  ║ ║")
+        print("                     ║             ║         ║         ║         ║               ║ ║ ╚══╗      ╔══╝   ╚══╗      ╔══╝ ║")
+        print("                     ║             ╠═════════╬═════════╬═════════╣               ║ ║    ║  %d   ║         ║  %d   ║     ║" % (self.playerScore[0], self.playerScore[1]))
+        print("                     ║             ║         ║         ║         ║               ║ ║    ╚══════╝         ╚══════╝    ║")
+        print("                     ║             ║    %s    ║    %s    ║    %s    ║               ║" % (self.cells[7], self.cells[8], self.cells[9]),"║                                ║")
+        print("                     ║             ║         ║         ║         ║               ║ ╚═════════════════════════════════╝")
         print("                     ║             ╚═════════╩═════════╩═════════╝               ║")
         print("                     ╚═══════════════════════════════════════════════════════════╝")
 
@@ -137,7 +139,9 @@ class Board():
                         break
                     else:
                         sys.stdout.write("\nSpot already taken.")
-                except BaseException:
+                except BaseException as hehe:
+                    print(hehe)
+                    time.sleep(5)
                     board.exitGame()
             board.update_cell(x_choice, "X")
             refreshScreen()
@@ -290,12 +294,14 @@ def refreshLoad():
 
 def pvpMode():
     p1 = input("\nEnter name of player 1 > ")
-    if (p1 == "" or " " in p1):
+    if (p1 == "" or " " in p1 or len(p1) >= 6):
         p1 = "Player 1"
+    board.playerScoreName[0] = p1
     refreshScreen()
     p2 = input("\nEnter name of player 2 > ")
-    if (p2 == "" or " " in p2):
+    if (p2 == "" or " " in p2 or len(p1) >= 6):
         p2 = "Player 2"
+    board.playerScoreName[1] = p2
     refreshScreen()
     while True:
         refreshScreen()
@@ -310,7 +316,9 @@ def pvpMode():
                     sys.stdout.write("\nSpot already taken.")
                     time.sleep(1)
                     refreshScreen()
-            except BaseException:
+            except BaseException as hehe:
+                print(hehe)
+                time.sleep(5)
                 board.exitGame()
         board.update_cell(x_choice, "X")
         refreshScreen()
@@ -334,7 +342,9 @@ def pvpMode():
                     sys.stdout.write("\nSpot already taken.")
                     time.sleep(1)
                     refreshScreen()
-            except BaseException:
+            except BaseException as hehe:
+                print(hehe)
+                time.sleep(5)
                 board.exitGame()
         board.update_cell(o_choice, "O")
         refreshScreen()
@@ -410,10 +420,12 @@ def gameStart():
                 print("\nInvalid gamemode selected")
                 time.sleep(1)
                 refreshScreen()
-        except BaseException:
+        except BaseException as hehe:
+            print(hehe)
+            time.sleep(5)
             board.exitGame()
 
-refreshLoad()
-board.updateLoad(0, "∎")
+#refreshLoad()
+#board.updateLoad(0, "∎")
 refreshScreen()
 menuSystem()
