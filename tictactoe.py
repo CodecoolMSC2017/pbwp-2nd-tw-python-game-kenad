@@ -360,14 +360,17 @@ def pvpMode():
                 x_choice = int(getchar())
                 if x_choice != 0 and board.cells[x_choice] == " ":
                     break
+                elif x_choice == "q":
+                    board.exitGame()
                 else:
-                    sys.stdout.write("\nSpot already taken.")
+                    print("\nSpot already taken.")
                     time.sleep(1)
                     refreshScreen()
-            except BaseException as hehe:
-                print(hehe)
-                time.sleep(5)
-                board.exitGame()
+            except BaseException as ex:
+                print("\nInvalid input")
+                time.sleep(1)
+                refreshScreen()
+                continue
         board.update_cell(x_choice, "X")
         refreshScreen()
         if board.isWinner("X"):
@@ -388,14 +391,17 @@ def pvpMode():
                 o_choice = int(getchar())
                 if o_choice != 0 and board.cells[o_choice] == " ":
                     break
+                elif o_choice == "q":
+                    board.exitGame()
                 else:
-                    sys.stdout.write("\nSpot already taken.")
+                    print("\nSpot already taken.")
                     time.sleep(1)
                     refreshScreen()
-            except BaseException as hehe:
-                print(hehe)
-                time.sleep(5)
-                board.exitGame()
+            except BaseException as ex:
+                print("\nInvalid input")
+                time.sleep(1)
+                refreshScreen()
+                continue
         board.update_cell(o_choice, "O")
         refreshScreen()
         if board.isWinner("O"):
@@ -427,7 +433,11 @@ def menuSystem():
     while True:
         refreshScreen()
         try:
-            print("\n"," "*size,"Start game: [S]            Help: [H]            Exit: [Q]")
+            print("\n","  "*size,"> Main Menu <")
+            print("\n"," "*size3,"Start game: [S]")
+            print("\n"," "*size4,"Leaderboard: [L]")
+            print("\n"," "*size5,"Help: [H]")
+            print("\n"," "*size6,"Exit: [Q]")
             sys.stdout.write("\nChoose a menupoint > ")
             menuChoice = getchar()
             if menuChoice == "s":
@@ -453,7 +463,9 @@ def gameStart():
     while True:
         refreshScreen()
         try:
-            sys.stdout.write("\n                             1 Player: [1]                2 Player: [2]")
+            print("\n","  "*size+"> Game Mode <")
+            print("\n"," "*size2+"1 Player: [1]")
+            print("\n"," "*size2+"2 Player: [2]")
             sys.stdout.write("\n\nChoose gamemode > ")
             gameMode = getchar()
             if gameMode == "1":
@@ -484,7 +496,13 @@ def terminal_size():
         struct.pack('HHHH', 0, 0, 0, 0)))
     return w
 
+terminal_size()
 size = int((terminal_size() - 96) / 2)
+size2 = int(terminal_size() - 97)
+size3 = int(terminal_size() - 97)
+size4 = int(terminal_size() - 98)
+size5 = int(terminal_size() - 95)
+size6 = int(terminal_size() - 95)
 #refreshLoad()
 #board.updateLoad(0, "∎")
 refreshScreen()
