@@ -41,27 +41,27 @@ class Board():
     def display(self):
         print("                     ║             ╔═════════╦═════════╦═════════╗               ║")
         print("                     ║             ║         ║         ║         ║               ║")
-        print(
-            "                     ║             ║    %s    ║    %s    ║    %s    ║               ║" %
-            (self.cells[1], self.cells[2], self.cells[3]))
+        print("                     ║             ║    %s    ║    %s    ║    %s    ║               ║" % (self.cells[1], self.cells[2], self.cells[3]))
         print("                     ║             ║         ║         ║         ║               ║")
         print("                     ║             ╠═════════╬═════════╬═════════╣               ║")
         print("                     ║             ║         ║         ║         ║               ║")
-        print(
-            "                     ║             ║    %s    ║    %s    ║    %s    ║               ║" %
-            (self.cells[4], self.cells[5], self.cells[6]))
+        print("                     ║             ║    %s    ║    %s    ║    %s    ║               ║" % (self.cells[4], self.cells[5], self.cells[6]))
         print("                     ║             ║         ║         ║         ║               ║")
         print("                     ║             ╠═════════╬═════════╬═════════╣               ║")
         print("                     ║             ║         ║         ║         ║               ║")
-        print(
-            "                     ║             ║    %s    ║    %s    ║    %s    ║               ║" %
-            (self.cells[7], self.cells[8], self.cells[9]))
+        print("                     ║             ║    %s    ║    %s    ║    %s    ║               ║" %(self.cells[7], self.cells[8], self.cells[9]))
         print("                     ║             ║         ║         ║         ║               ║")
         print("                     ║             ╚═════════╩═════════╩═════════╝               ║")
         print("                     ╚═══════════════════════════════════════════════════════════╝")
 
     def updateLoad(self, cell_no1, marker):
         for i in self.loading:
+            if cell_no1==17:
+                time.sleep(2)
+            if cell_no1==18:
+                time.sleep(3)
+            if cell_no1==19:
+                time.sleep(5)
             self.loading[cell_no1] = marker
             refreshLoad()
             time.sleep(0.1)
@@ -365,7 +365,7 @@ def menuSystem():
     while True:
         refreshScreen()
         try:
-            sys.stdout.write("\n                      [Start game: S]            [Help: H]            [Exit: Q]")
+            sys.stdout.write("\n                      Start game: [S]            Help: [H]            Exit: [Q]")
             sys.stdout.write("\n\nChoose a menupoint > ")
             menuChoice = getchar()
             if menuChoice == "s":
@@ -385,7 +385,7 @@ def menuSystem():
 
 def gameHelp():
     print("\nasdasdsad")
-    input()
+    getchar()
 
 def gameStart():
     while True:
