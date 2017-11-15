@@ -22,39 +22,39 @@ class Board():
         self.cells = [" "," "," "," "," "," "," "," "," "," "]
         self.loading = [" "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "," "]
         self.playerScore = [0,0]
-        self.playerScoreName = [" "," "]
+        self.playerScoreName = ["Player 1","Player 2"]
 
     def loadingScreen(self):
-        print("                     ╔═══════════════════════════════════════════════════════════╗")
-        print("                     ║         _____ _     _____          _____                  ║")
-        print("                     ║        /__  /(_) __/__   \__ _  __/__   \___   ___        ║")
-        print("                     ║          / /\/ |/ __|/ /\/ _` |/ __|/ /\/ _ \ / _ |       ║")
-        print("                     ║         / /  | | (__/ / | (_| | (__/ / | (_) |  __/       ║")
-        print("                     ║         \/   |_|\___\/   \__,_|\___\/   \___/ \___|       ║")
-        print("                     ║                                                           ║")
-        print("                     ║                         Loading...                        ║")
-        print("                     ║                   [%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s]                  ║" % (self.loading[0], 
+        print(" "*size,"╔═══════════════════════════════════════════════════════════╗")
+        print(" "*size,"║         _____ _     _____          _____                  ║")
+        print(" "*size,"║        /__  /(_) __/__   \__ _  __/__   \___   ___        ║")
+        print(" "*size,"║          / /\/ |/ __|/ /\/ _` |/ __|/ /\/ _ \ / _ |       ║")
+        print(" "*size,"║         / /  | | (__/ / | (_| | (__/ / | (_) |  __/       ║")
+        print(" "*size,"║         \/   |_|\___\/   \__,_|\___\/   \___/ \___|       ║")
+        print(" "*size,"║                                                           ║")
+        print(" "*size,"║                         Loading...                        ║")
+        print(" "*size,"║                   [%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s]                  ║" % (self.loading[0], 
         self.loading[1], self.loading[2], self.loading[3], self.loading[4], self.loading[5], 
         self.loading[6], self.loading[7], self.loading[8], self.loading[9], self.loading[10], 
         self.loading[11], self.loading[12], self.loading[13], self.loading[14], self.loading[15], 
         self.loading[16], self.loading[17], self.loading[18], self.loading[19]))
-        print("                     ╚═══════════════════════════════════════════════════════════╝")
+        print(" "*size,"╚═══════════════════════════════════════════════════════════╝")
 
     def display(self):
-        print("                     ║             ╔═════════╦═════════╦═════════╗               ║ Player1: %s | Player2: %s" % (self.playerScoreName[0], self.playerScoreName[1]))
-        print("                     ║             ║         ║         ║         ║               ║ ╔═════════════════════════════════╗")
-        print("                     ║             ║    %s    ║    %s    ║    %s    ║               ║" % (self.cells[1], self.cells[2], self.cells[3]),"║                                 ║")
-        print("                     ║             ║         ║         ║         ║               ║ ║          --SCOREBOARD--         ║")
-        print("                     ║             ╠═════════╬═════════╬═════════╣               ║ ║                                 ║")
-        print("                     ║             ║         ║         ║         ║               ║ ║ ╔════════════╗   ╔════════════╗ ║")
-        print("                     ║             ║    %s    ║    %s    ║    %s    ║               ║" % (self.cells[4], self.cells[5], self.cells[6]),"║ ║  Player 1  ║    ║  Player 2  ║ ║")
-        print("                     ║             ║         ║         ║         ║               ║ ║ ╚══╗      ╔══╝   ╚══╗      ╔══╝ ║")
-        print("                     ║             ╠═════════╬═════════╬═════════╣               ║ ║    ║  %d   ║         ║  %d   ║     ║" % (self.playerScore[0], self.playerScore[1]))
-        print("                     ║             ║         ║         ║         ║               ║ ║    ╚══════╝         ╚══════╝    ║")
-        print("                     ║             ║    %s    ║    %s    ║    %s    ║               ║" % (self.cells[7], self.cells[8], self.cells[9]),"║                                ║")
-        print("                     ║             ║         ║         ║         ║               ║ ╚═════════════════════════════════╝")
-        print("                     ║             ╚═════════╩═════════╩═════════╝               ║")
-        print("                     ╚═══════════════════════════════════════════════════════════╝")
+        print(" "*size,"║             ╔═════════╦═════════╦═════════╗               ║")
+        print(" "*size,"║             ║         ║         ║         ║               ║ ╔══════════════════════════════════╗")
+        print(" "*size,"║             ║    %s    ║    %s    ║    %s    ║               ║" % (self.cells[1], self.cells[2], self.cells[3]),"║                                  ║")
+        print(" "*size,"║             ║         ║         ║         ║               ║ ║          --SCOREBOARD--          ║")
+        print(" "*size,"║             ╠═════════╬═════════╬═════════╣               ║ ║                                  ║")
+        print(" "*size,"║             ║         ║         ║         ║               ║ ║ ╔════════════╗    ╔════════════╗ ║")
+        print(" "*size,"║             ║    %s    ║    %s    ║    %s    ║               ║" % (self.cells[4], self.cells[5], self.cells[6]),"║ ║  %8s  ║    ║  %8s  ║ ║" % (self.playerScoreName[0], self.playerScoreName[1]))
+        print(" "*size,"║             ║         ║         ║         ║               ║ ║ ╚══╗      ╔══╝    ╚══╗      ╔══╝ ║")
+        print(" "*size,"║             ╠═════════╬═════════╬═════════╣               ║ ║    ║  %02d  ║          ║  %02d  ║    ║" % (self.playerScore[0], self.playerScore[1]))
+        print(" "*size,"║             ║         ║         ║         ║               ║ ║    ╚══════╝          ╚══════╝    ║")
+        print(" "*size,"║             ║    %s    ║    %s    ║    %s    ║               ║" % (self.cells[7], self.cells[8], self.cells[9]),"║                                  ║")
+        print(" "*size,"║             ║         ║         ║         ║               ║ ╚══════════════════════════════════╝")
+        print(" "*size,"║             ╚═════════╩═════════╩═════════╝               ║")
+        print(" "*size,"╚═══════════════════════════════════════════════════════════╝")
 
     def updateLoad(self, cell_no1, marker):
         for i in self.loading:
@@ -125,8 +125,24 @@ class Board():
 
     def aiMode(self):
         p1 = input("\nEnter player name > ")
-        if (p1 == "" or " " in p1):
+        if (p1 == "" or " " in p1 or len(p1) > 8):
             p1 = "Player 1"
+            board.playerScoreName[0] = p1
+        elif (p1 == "" or " " in p1 or len(p1) == 7):
+            board.playerScoreName[0] = p1+" "
+        elif (p1 == "" or " " in p1 or len(p1) == 6):
+            board.playerScoreName[0] = p1+" "
+        elif (p1 == "" or " " in p1 or len(p1) == 5):
+            board.playerScoreName[0] = p1+"  "
+        elif (p1 == "" or " " in p1 or len(p1) == 4):
+            board.playerScoreName[0] = p1+"  "
+        elif (p1 == "" or " " in p1 or len(p1) == 3):
+            board.playerScoreName[0] = p1+"   "
+        elif (p1 == "" or " " in p1 or len(p1) == 2):
+            board.playerScoreName[0] = p1+"   "
+        elif (p1 == "" or " " in p1 or len(p1) == 1):
+            board.playerScoreName[0] = p1+"    "
+        board.playerScoreName[1] = "PC   "
         refreshScreen()
         while True:
             refreshScreen()
@@ -146,6 +162,8 @@ class Board():
             board.update_cell(x_choice, "X")
             refreshScreen()
             if board.isWinner("X"):
+                board.playerScore[0] += 1
+                refreshScreen()
                 print("\n%s wins!" % (p1))
                 wouldYouLikeToPlayAgain()
 
@@ -159,6 +177,8 @@ class Board():
             board.aiMoves("O")
             
             if board.isWinner("O"):
+                board.playerScore[1] += 1
+                refreshScreen()
                 print("\nPC wins!")
                 wouldYouLikeToPlayAgain()
 
@@ -274,14 +294,14 @@ def wouldYouLikeToPlayAgain():
         board.exitGame()
 
 def printHeader():
-    print("                     ╔═══════════════════════════════════════════════════════════╗")
-    print("                     ║       _____ _     _____          _____                    ║")
-    print("                     ║      /__  /(_) __/__   \__ _  __/__   \___   ___          ║")
-    print("                     ║        / /\/ |/ __|/ /\/ _` |/ __|/ /\/ _ \ / _ |         ║")
-    print("                     ║       / /  | | (__/ / | (_| | (__/ / | (_) |  __/         ║")
-    print("                     ║       \/   |_|\___\/   \__,_|\___\/   \___/ \___|         ║")
-    print("                     ║            To exit, enter a letter anytime.               ║")
-    print("                     ║                                                           ║")
+    print(" "*size,"╔═══════════════════════════════════════════════════════════╗")
+    print(" "*size,"║       _____ _     _____          _____                    ║")
+    print(" "*size,"║      /__  /(_) __/__   \__ _  __/__   \___   ___          ║")
+    print(" "*size,"║        / /\/ |/ __|/ /\/ _` |/ __|/ /\/ _ \ / _ |         ║")
+    print(" "*size,"║       / /  | | (__/ / | (_| | (__/ / | (_) |  __/         ║")
+    print(" "*size,"║       \/   |_|\___\/   \__,_|\___\/   \___/ \___|         ║")
+    print(" "*size,"║            To exit, enter a letter anytime.               ║")
+    print(" "*size,"║                                                           ║")
 
 def refreshScreen():
     os.system("clear")
@@ -294,14 +314,42 @@ def refreshLoad():
 
 def pvpMode():
     p1 = input("\nEnter name of player 1 > ")
-    if (p1 == "" or " " in p1 or len(p1) >= 6):
-        p1 = "Player 1"
-    board.playerScoreName[0] = p1
+    if (p1 == "" or " " in p1 or len(p1) > 8):
+            p1 = "Player 1"
+            board.playerScoreName[0] = p1
+    elif (p1 == "" or " " in p1 or len(p1) == 7):
+        board.playerScoreName[0] = p1+" "
+    elif (p1 == "" or " " in p1 or len(p1) == 6):
+        board.playerScoreName[0] = p1+" "
+    elif (p1 == "" or " " in p1 or len(p1) == 5):
+        board.playerScoreName[0] = p1+"  "
+    elif (p1 == "" or " " in p1 or len(p1) == 4):
+        board.playerScoreName[0] = p1+"  "
+    elif (p1 == "" or " " in p1 or len(p1) == 3):
+        board.playerScoreName[0] = p1+"   "
+    elif (p1 == "" or " " in p1 or len(p1) == 2):
+        board.playerScoreName[0] = p1+"   "
+    elif (p1 == "" or " " in p1 or len(p1) == 1):
+        board.playerScoreName[0] = p1+"    "
     refreshScreen()
     p2 = input("\nEnter name of player 2 > ")
-    if (p2 == "" or " " in p2 or len(p1) >= 6):
-        p2 = "Player 2"
-    board.playerScoreName[1] = p2
+    if (p2 == "" or " " in p2 or len(p2) > 8):
+        p2 = "Player 1"
+        board.playerScoreName[1] = p2
+    elif (p2 == "" or " " in p2 or len(p2) == 7):
+        board.playerScoreName[1] = p2+" "
+    elif (p2 == "" or " " in p2 or len(p2) == 6):
+        board.playerScoreName[1] = p2+" "
+    elif (p2 == "" or " " in p2 or len(p2) == 5):
+        board.playerScoreName[1] = p2+"  "
+    elif (p2 == "" or " " in p2 or len(p2) == 4):
+        board.playerScoreName[1] = p2+"  "
+    elif (p2 == "" or " " in p2 or len(p2) == 3):
+        board.playerScoreName[1] = p2+"   "
+    elif (p2 == "" or " " in p2 or len(p2) == 2):
+        board.playerScoreName[1] = p2+"   "
+    elif (p2 == "" or " " in p2 or len(p2) == 1):
+        board.playerScoreName[1] = p2+"    "
     refreshScreen()
     while True:
         refreshScreen()
@@ -323,6 +371,8 @@ def pvpMode():
         board.update_cell(x_choice, "X")
         refreshScreen()
         if board.isWinner("X"):
+            board.playerScore[0] += 1
+            refreshScreen()
             print("\n%s wins!" % (p1))
             wouldYouLikeToPlayAgain()
 
@@ -349,6 +399,8 @@ def pvpMode():
         board.update_cell(o_choice, "O")
         refreshScreen()
         if board.isWinner("O"):
+            board.playerScore[1] += 1
+            refreshScreen()
             print("\n%s wins!" % (p2))
             wouldYouLikeToPlayAgain()
 
@@ -375,8 +427,8 @@ def menuSystem():
     while True:
         refreshScreen()
         try:
-            sys.stdout.write("\n                      Start game: [S]            Help: [H]            Exit: [Q]")
-            sys.stdout.write("\n\nChoose a menupoint > ")
+            print("\n"," "*size,"Start game: [S]            Help: [H]            Exit: [Q]")
+            sys.stdout.write("\nChoose a menupoint > ")
             menuChoice = getchar()
             if menuChoice == "s":
                 refreshScreen()
@@ -425,6 +477,14 @@ def gameStart():
             time.sleep(5)
             board.exitGame()
 
+def terminal_size():
+    import fcntl, termios, struct
+    h, w, hp, wp = struct.unpack('HHHH',
+        fcntl.ioctl(0, termios.TIOCGWINSZ,
+        struct.pack('HHHH', 0, 0, 0, 0)))
+    return w
+
+size = int((terminal_size() - 96) / 2)
 #refreshLoad()
 #board.updateLoad(0, "∎")
 refreshScreen()
