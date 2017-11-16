@@ -147,18 +147,28 @@ class Board():
         while True:
             refreshScreen()
             while True:
-                try:
+                refreshScreen()
+                sys.stdout.write("\n%s, Please choose 1-9 > " % (p1))
+                x_choice = getchar()
+                if x_choice != "q":
+                    print("\nInvalid input.")
+                    time.sleep(1)
                     refreshScreen()
-                    sys.stdout.write("\n%s, Please choose 1-9 > " % (p1))
-                    x_choice = int(getchar())
+                    continue
+                elif x_choice == "q":
+                    menuSystem()
+                else:
+                    x_choice = int(x_choice)
                     if x_choice != 0 and board.cells[x_choice] == " ":
                         break
+                    elif x_choice == 0:
+                        print("\nInvalid spot selected.")
+                        time.sleep(1)
+                        refreshScreen()
                     else:
-                        sys.stdout.write("\nSpot already taken.")
-                except BaseException as hehe:
-                    print(hehe)
-                    time.sleep(5)
-                    board.exitGame()
+                        print("\nSpot already taken.")
+                        time.sleep(1)
+                        refreshScreen()
             board.update_cell(x_choice, "X")
             refreshScreen()
             if board.isWinner("X"):
@@ -354,23 +364,28 @@ def pvpMode():
     while True:
         refreshScreen()
         while True:
-            try:
+            refreshScreen()
+            sys.stdout.write("\n%s, Please choose 1-9 > " % (p1))
+            x_choice = getchar()
+            if x_choice != "q":
+                print("\nInvalid input.")
+                time.sleep(1)
                 refreshScreen()
-                sys.stdout.write("\n%s, Please choose 1-9 > " % (p1))
-                x_choice = int(getchar())
+                continue
+            if x_choice == "q":
+                menuSystem()
+            else:
+                x_choice = int(x_choice)
                 if x_choice != 0 and board.cells[x_choice] == " ":
                     break
-                elif x_choice == "q":
-                    board.exitGame()
+                elif x_choice == 0:
+                    print("\nInvalid spot selected.")
+                    time.sleep(1)
+                    refreshScreen()
                 else:
                     print("\nSpot already taken.")
                     time.sleep(1)
                     refreshScreen()
-            except BaseException as ex:
-                print("\nInvalid input")
-                time.sleep(1)
-                refreshScreen()
-                continue
         board.update_cell(x_choice, "X")
         refreshScreen()
         if board.isWinner("X"):
@@ -385,23 +400,29 @@ def pvpMode():
 
         refreshScreen()
         while True:
-            try:
+            refreshScreen()
+            sys.stdout.write("\n%s, Please choose 1-9 > " % (p2))
+            o_choice = getchar()
+            """if o_choice != "q":
+                print("\nInvalid input.")
+                time.sleep(1)
                 refreshScreen()
-                sys.stdout.write("\n%s, Please choose 1-9 > " % (p2))
-                o_choice = int(getchar())
+                continue"""
+            if o_choice == "q":
+                menuSystem()
+            else:
+                o_choice = int(o_choice)
                 if o_choice != 0 and board.cells[o_choice] == " ":
                     break
-                elif o_choice == "q":
-                    board.exitGame()
+                elif o_choice == 0:
+                    print("\nInvalid spot selected.")
+                    time.sleep(1)
+                    refreshScreen()
                 else:
                     print("\nSpot already taken.")
                     time.sleep(1)
                     refreshScreen()
-            except BaseException as ex:
-                print("\nInvalid input")
-                time.sleep(1)
-                refreshScreen()
-                continue
+
         board.update_cell(o_choice, "O")
         refreshScreen()
         if board.isWinner("O"):
@@ -442,11 +463,14 @@ def menuSystem():
             if menuChoice == "s":
                 refreshScreen()
                 gameStart()
+                break
             elif menuChoice == "h":
                 gameHelp()
                 menuSystem()
             elif menuChoice == "q":
-                board.exitGame()
+                print("kakakaka")
+                time.sleep(5)
+                quit()
             else:
                 print("\nInvalid menupoint selected")
                 time.sleep(1)
@@ -461,32 +485,29 @@ def gameHelp():
 def gameStart():
     while True:
         refreshScreen()
-        try:
-            print("\n","  "*size+"> Game Mode <")
-            print("\n"," "*size2+"1 Player: [1]")
-            print("\n"," "*size2+"2 Player: [2]")
-            sys.stdout.write("\n\nChoose gamemode > ")
-            gameMode = getchar()
-            if gameMode == "1":
-                refreshScreen()
-                print("\nYou have selected 1 player mode!", end="")
-                time.sleep(2)
-                refreshScreen()
-                board.aiMode()
-            elif gameMode == "2":
-                refreshScreen()
-                print("\nYou have selected 2 player mode!", end="")
-                time.sleep(2)
-                refreshScreen()
-                pvpMode()
-            else:
-                print("\nInvalid gamemode selected")
-                time.sleep(1)
-                refreshScreen()
-        except BaseException as hehe:
-            print(hehe)
-            time.sleep(5)
-            board.exitGame()
+        print("\n","  "*size+"> Game Mode <")
+        print("\n"," "*size2+"1 Player: [1]")
+        print("\n"," "*size2+"2 Player: [2]")
+        sys.stdout.write("\n\nChoose gamemode > ")
+        gameMode = getchar()
+        if gameMode == "1":
+            refreshScreen()
+            print("\nYou have selected 1 player mode!", end="")
+            time.sleep(2)
+            refreshScreen()
+            board.aiMode()
+            break
+        elif gameMode == "2":
+            refreshScreen()
+            print("\nYou have selected 2 player mode!", end="")
+            time.sleep(2)
+            refreshScreen()
+            pvpMode()
+            break
+        else:
+            print("\nInvalid gamemode selected")
+            time.sleep(1)
+            refreshScreen()
 
 def terminal_size():
     import fcntl, termios, struct
