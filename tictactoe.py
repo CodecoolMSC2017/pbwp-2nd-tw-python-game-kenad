@@ -61,9 +61,9 @@ class Board():
             if cell_no1==17:
                 time.sleep(2)
             if cell_no1==18:
-                time.sleep(3)
+                time.sleep(2)
             if cell_no1==19:
-                time.sleep(5)
+                time.sleep(4)
             self.loading[cell_no1] = marker
             refreshLoad()
             time.sleep(0.1)
@@ -114,17 +114,17 @@ class Board():
 
     def exitGame(self):
         refreshScreen()
-        print("\nExiting game...")
+        print("\n\n\n\n\n\n\n\n\nExiting game...")
         time.sleep(2)
         refreshScreen()
-        print("\nThank you for playing!")
+        print("\n\n\n\n\n\n\n\n\nThank you for playing!")
         time.sleep(2)
         refreshScreen()
         os.system("clear")
         quit()
 
     def aiMode(self):
-        p1 = input("\nEnter player name > ")
+        p1 = input("\n\n\n\n\n\n\n\n\nEnter player name > ")
         if (p1 == "" or " " in p1 or len(p1) > 8):
             p1 = "Player 1"
             board.playerScoreName[0] = p1
@@ -148,7 +148,7 @@ class Board():
             refreshScreen()
             while True:
                 refreshScreen()
-                sys.stdout.write("\n%s, Please choose 1-9 > " % (p1))
+                sys.stdout.write("\n\n\n\n\n\n\n\n\n%s, Please choose 1-9 > " % (p1))
                 x_choice = getchar()
                 if x_choice.isdigit():
                     x_choice = int(x_choice)
@@ -174,12 +174,14 @@ class Board():
             if board.isWinner("X"):
                 board.playerScore[0] += 1
                 refreshScreen()
-                print("\n%s wins!" % (p1))
-                wouldYouLikeToPlayAgain()
+                print("\n\n\n\n\n\n\n\n\n%s wins!" % (p1))
+                xwin = ("\n\n\n\n\n\n\n\n\n%s wins!" % (p1))
+                wouldYouLikeToPlayAgain(xwin)
 
             if board.isTie():
-                print("\nTie game!")
-                wouldYouLikeToPlayAgain()
+                print("\n\n\n\n\n\n\n\n\nTie game!")
+                tie = ("\n\n\n\n\n\n\n\n\nTie game!")
+                wouldYouLikeToPlayAgain(tie)
 
             refreshScreen()
             for i in range(2):
@@ -189,12 +191,13 @@ class Board():
             if board.isWinner("O"):
                 board.playerScore[1] += 1
                 refreshScreen()
-                print("\nPC wins!")
-                wouldYouLikeToPlayAgain()
+                owin = ("\n\n\n\n\n\n\n\n\nPC wins!")
+                wouldYouLikeToPlayAgain(owin)
 
             if board.isTie():
-                print("\nTie game!")
-                wouldYouLikeToPlayAgain()
+                print("\n\n\n\n\n\n\n\n\nTie game!")
+                tie = ("\n\n\n\n\n\n\n\n\nTie game!")
+                wouldYouLikeToPlayAgain(tie)
 
     def aiMoves(self, player):
         if player == "X":
@@ -264,44 +267,40 @@ class Board():
             self.update_cell(9, player)
 
         # NoBlockNoWin
-        elif (self.cells[1] == " "):
-            self.update_cell(1, player)
-        
-        elif (self.cells[2] == " "):
-            self.update_cell(2, player)
-
-        elif (self.cells[3] == " "):
-            self.update_cell(3, player)
-
-        elif (self.cells[4] == " "):
-            self.update_cell(4, player)
-
-        elif (self.cells[5] == " "):
-            self.update_cell(5, player)
-
-        elif (self.cells[6] == " "):
-            self.update_cell(6, player)
-
-        elif (self.cells[7] == " "):
-            self.update_cell(7, player)
-
-        elif (self.cells[8] == " "):
-            self.update_cell(8, player)
-
-        elif (self.cells[9] == " "):
-            self.update_cell(9, player)
+        else:
+            for i in range(1,10):
+                if self.cells[i] == " ":
+                    self.update_cell(i, player)
+                    break
 
         refreshScreen()
 
 board = Board()
 
-def wouldYouLikeToPlayAgain():
+def wouldYouLikeToPlayAgain(condition):
     print("Would you like to play again? (Y/N) > ")
     playAgain = getchar().upper()
     if (playAgain == "Y"):
         board.reset()
-    else:
+    elif (playAgain == "N"):
         menuSystem()
+    else:
+        print("Invalid input")
+        time.sleep(1)
+        refreshScreen()
+    while True:
+        print(condition)
+        print("Would you like to play again? (Y/N) > ")
+        playAgain = getchar().upper()
+        if (playAgain == "Y"):
+            board.reset()
+        elif (playAgain == "N"):
+            menuSystem()
+        else:
+            print("Invalid input")
+            time.sleep(1)
+            refreshScreen()
+            continue
 
 def printHeader():
     print(" "*size,"╔═══════════════════════════════════════════════════════════╗")
@@ -310,7 +309,7 @@ def printHeader():
     print(" "*size,"║        / /\/ |/ __|/ /\/ _` |/ __|/ /\/ _ \ / _ |         ║")
     print(" "*size,"║       / /  | | (__/ / | (_| | (__/ / | (_) |  __/         ║")
     print(" "*size,"║       \/   |_|\___\/   \__,_|\___\/   \___/ \___|         ║")
-    print(" "*size,"║            To exit, enter a letter anytime.               ║")
+    print(" "*size,"║                 To exit, press Q anytime.                 ║")
     print(" "*size,"║                                                           ║")
 
 def refreshScreen():
@@ -323,7 +322,7 @@ def refreshLoad():
     board.loadingScreen()
 
 def pvpMode():
-    p1 = input("\nEnter name of player 1 > ")
+    p1 = input("\n\n\n\n\n\n\n\n\nEnter name of player 1 > ")
     if (p1 == "" or " " in p1 or len(p1) > 8):
             p1 = "Player 1"
             board.playerScoreName[0] = p1
@@ -342,7 +341,7 @@ def pvpMode():
     elif (p1 == "" or " " in p1 or len(p1) == 1):
         board.playerScoreName[0] = p1+"    "
     refreshScreen()
-    p2 = input("\nEnter name of player 2 > ")
+    p2 = input("\n\n\n\n\n\n\n\n\nEnter name of player 2 > ")
     if (p2 == "" or " " in p2 or len(p2) > 8):
         p2 = "Player 2"
         board.playerScoreName[1] = p2
@@ -365,18 +364,18 @@ def pvpMode():
         refreshScreen()
         while True:
             refreshScreen()
-            sys.stdout.write("\n%s, Please choose 1-9 > " % (p1))
+            sys.stdout.write("\n\n\n\n\n\n\n\n\n%s, Please choose 1-9 > " % (p1))
             x_choice = getchar()
             if x_choice.isdigit():
                 x_choice = int(x_choice)
                 if x_choice != 0 and board.cells[x_choice] == " ":
                     break
                 elif x_choice == 0:
-                    print("\nInvalid spot selected.")
+                    print("\n\n\n\n\n\n\n\n\n\nInvalid spot selected.")
                     time.sleep(1)
                     refreshScreen()
                 else:
-                    print("\nSpot already taken.")
+                    print("\n\n\n\n\n\n\n\n\n\nSpot already taken.")
                     time.sleep(1)
                     refreshScreen()
             elif x_choice != "q":
@@ -392,32 +391,34 @@ def pvpMode():
         if board.isWinner("X"):
             board.playerScore[0] += 1
             refreshScreen()
-            print("\n%s wins!" % (p1))
-            wouldYouLikeToPlayAgain()
+            print("\n\n\n\n\n\n\n\n\n%s wins!" % (p1))
+            xwin = ("\n\n\n\n\n\n\n\n\n%s wins!" %(p1))
+            wouldYouLikeToPlayAgain(xwin)
 
         if board.isTie():
-            print("\nTie game!")
-            wouldYouLikeToPlayAgain()
+            print("\n\n\n\n\n\n\n\n\nTie game!")
+            tie = ("\n\n\n\n\n\n\n\n\nTie game!")
+            wouldYouLikeToPlayAgain(tie)
 
         refreshScreen()
         while True:
             refreshScreen()
-            sys.stdout.write("\n%s, Please choose 1-9 > " % (p2))
+            sys.stdout.write("\n\n\n\n\n\n\n\n\n%s, Please choose 1-9 > " % (p2))
             o_choice = getchar()
             if o_choice.isdigit():
                 o_choice = int(o_choice)
                 if o_choice != 0 and board.cells[o_choice] == " ":
                     break
                 elif o_choice == 0:
-                    print("\nInvalid spot selected.")
+                    print("\n\n\n\n\n\n\n\n\n\nInvalid spot selected.")
                     time.sleep(1)
                     refreshScreen()
                 else:
-                    print("\nSpot already taken.")
+                    print("\n\n\n\n\n\n\n\n\n\nSpot already taken.")
                     time.sleep(1)
                     refreshScreen()
             elif o_choice != "q":
-                print("\nInvalid input.")
+                print("\n\n\n\n\n\n\n\n\n\nInvalid input.")
                 time.sleep(1)
                 refreshScreen()
                 continue
@@ -429,55 +430,53 @@ def pvpMode():
         if board.isWinner("O"):
             board.playerScore[1] += 1
             refreshScreen()
-            print("\n%s wins!" % (p2))
-            wouldYouLikeToPlayAgain()
+            print("\n\n\n\n\n\n\n\n%s wins!" % (p2))
+            owin = ("\n\n\n\n\n\n\n\n\n%s wins!" %(p2))
+            wouldYouLikeToPlayAgain(owin)
 
         if board.isTie():
-            print("\nTie game!")
-            wouldYouLikeToPlayAgain()
+            print("\n\n\n\n\n\n\n\nTie game!")
+            tie = ("\n\n\n\n\n\n\n\n\nTie game!")
+            wouldYouLikeToPlayAgain(tie)
 
 def pcLoading():
     refreshScreen()
-    print("\nPC's turn > |")
+    print("\n\n\n\n\n\n\n\n\nPC's turn > |")
     time.sleep(0.2)
     refreshScreen()
-    print("\nPC's turn > / ")
+    print("\n\n\n\n\n\n\n\n\nPC's turn > / ")
     time.sleep(0.2)
     refreshScreen()
-    print("\nPC's turn > ─ ")
+    print("\n\n\n\n\n\n\n\n\nPC's turn > ─ ")
     time.sleep(0.2)
     refreshScreen()
-    print("\nPC's turn > \ ")
+    print("\n\n\n\n\n\n\n\n\nPC's turn > \ ")
     time.sleep(0.2)
     refreshScreen()
 
 def menuSystem():
     while True:
         refreshScreen()
-        try:
-            print("\n","  "*size,"> Main Menu <")
-            print("\n"," "*size2,"Start game: [S]")
-            print("\n"," "*size3,"Help: [H]")
-            print("\n"," "*size3,"Exit: [Q]")
-            sys.stdout.write("\nChoose a menupoint > ")
-            menuChoice = getchar()
-            if menuChoice == "s":
-                refreshScreen()
-                gameStart()
-                break
-            elif menuChoice == "h":
-                gameHelp()
-                menuSystem()
-            elif menuChoice == "q":
-                print("kakakaka")
-                time.sleep(5)
-                quit()
-            else:
-                print("\nInvalid menupoint selected")
-                time.sleep(1)
-                refreshScreen()
-        except ValueError:
-            print("whatdidyoujustdo")
+        print("\n","  "*size,"> Main Menu <")
+        print("\n"," "*size2,"Start game: [S]")
+        print("\n"," "*size3,"Help: [H]")
+        print("\n"," "*size3,"Exit: [Q]")
+        print("\nChoose a menupoint > ", end="")
+        menuChoice = getchar()
+        if menuChoice == "s":
+            refreshScreen()
+            gameStart()
+            break
+        elif menuChoice == "h":
+            gameHelp()
+            menuSystem()
+        elif menuChoice == "q":
+            board.exitGame()
+        else:
+            print("\nInvalid menupoint selected")
+            time.sleep(1)
+            refreshScreen()
+            continue
 
 def gameHelp():
     print("\nasdasdsad")
@@ -489,18 +488,20 @@ def gameStart():
         print("\n","  "*size+"> Game Mode <")
         print("\n"," "*size2+"1 Player: [1]")
         print("\n"," "*size2+"2 Player: [2]")
-        sys.stdout.write("\n\nChoose gamemode > ")
+        print("\n\n\nChoose gamemode > ", end="")
         gameMode = getchar()
-        if gameMode == "1":
+        if gameMode == "q":
+            menuSystem()
+        elif gameMode == "1":
             refreshScreen()
-            print("\nYou have selected 1 player mode!", end="")
+            print("\n\n\n\n\n\n\n\n\nYou have selected 1 player mode!", end="")
             time.sleep(2)
             refreshScreen()
             board.aiMode()
             break
         elif gameMode == "2":
             refreshScreen()
-            print("\nYou have selected 2 player mode!", end="")
+            print("\n\n\n\n\n\n\n\n\nYou have selected 2 player mode!", end="")
             time.sleep(2)
             refreshScreen()
             pvpMode()
@@ -521,7 +522,7 @@ terminal_size()
 size = int((terminal_size() - 96) / 2)
 size2 = int(terminal_size() - 97)
 size3 = int(terminal_size() - 95)
-#refreshLoad()
-#board.updateLoad(0, "∎")
+refreshLoad()
+board.updateLoad(0, "∎")
 refreshScreen()
 menuSystem()
