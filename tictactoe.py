@@ -150,14 +150,7 @@ class Board():
                 refreshScreen()
                 sys.stdout.write("\n%s, Please choose 1-9 > " % (p1))
                 x_choice = getchar()
-                if x_choice != "q":
-                    print("\nInvalid input.")
-                    time.sleep(1)
-                    refreshScreen()
-                    continue
-                elif x_choice == "q":
-                    menuSystem()
-                else:
+                if x_choice.isdigit():
                     x_choice = int(x_choice)
                     if x_choice != 0 and board.cells[x_choice] == " ":
                         break
@@ -169,6 +162,13 @@ class Board():
                         print("\nSpot already taken.")
                         time.sleep(1)
                         refreshScreen()
+                elif x_choice != "q":
+                    print("\nInvalid input.")
+                    time.sleep(1)
+                    refreshScreen()
+                    continue
+                elif x_choice == "q":
+                    menuSystem()
             board.update_cell(x_choice, "X")
             refreshScreen()
             if board.isWinner("X"):
@@ -344,7 +344,7 @@ def pvpMode():
     refreshScreen()
     p2 = input("\nEnter name of player 2 > ")
     if (p2 == "" or " " in p2 or len(p2) > 8):
-        p2 = "Player 1"
+        p2 = "Player 2"
         board.playerScoreName[1] = p2
     elif (p2 == "" or " " in p2 or len(p2) == 7):
         board.playerScoreName[1] = p2+" "
@@ -367,14 +367,7 @@ def pvpMode():
             refreshScreen()
             sys.stdout.write("\n%s, Please choose 1-9 > " % (p1))
             x_choice = getchar()
-            if x_choice != "q":
-                print("\nInvalid input.")
-                time.sleep(1)
-                refreshScreen()
-                continue
-            if x_choice == "q":
-                menuSystem()
-            else:
+            if x_choice.isdigit():
                 x_choice = int(x_choice)
                 if x_choice != 0 and board.cells[x_choice] == " ":
                     break
@@ -386,6 +379,14 @@ def pvpMode():
                     print("\nSpot already taken.")
                     time.sleep(1)
                     refreshScreen()
+            elif x_choice != "q":
+                print("\nInvalid input.")
+                time.sleep(1)
+                refreshScreen()
+                continue
+            elif x_choice == "q":
+                menuSystem()
+                
         board.update_cell(x_choice, "X")
         refreshScreen()
         if board.isWinner("X"):
@@ -403,14 +404,7 @@ def pvpMode():
             refreshScreen()
             sys.stdout.write("\n%s, Please choose 1-9 > " % (p2))
             o_choice = getchar()
-            """if o_choice != "q":
-                print("\nInvalid input.")
-                time.sleep(1)
-                refreshScreen()
-                continue"""
-            if o_choice == "q":
-                menuSystem()
-            else:
+            if o_choice.isdigit():
                 o_choice = int(o_choice)
                 if o_choice != 0 and board.cells[o_choice] == " ":
                     break
@@ -422,6 +416,13 @@ def pvpMode():
                     print("\nSpot already taken.")
                     time.sleep(1)
                     refreshScreen()
+            elif o_choice != "q":
+                print("\nInvalid input.")
+                time.sleep(1)
+                refreshScreen()
+                continue
+            elif o_choice == "q":
+                menuSystem()
 
         board.update_cell(o_choice, "O")
         refreshScreen()
