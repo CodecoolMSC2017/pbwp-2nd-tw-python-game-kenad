@@ -518,6 +518,10 @@ def terminal_size():
         struct.pack('HHHH', 0, 0, 0, 0)))
     return w
 
+try:
+    file = open("leaderboard.txt","r")
+except:
+    file = open("leaderboard.txt","w")
 terminal_size()
 size = int((terminal_size() - 96) / 2)
 size2 = int(terminal_size() - 97)
