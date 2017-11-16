@@ -291,7 +291,7 @@ def wouldYouLikeToPlayAgain():
     if (playAgain == "Y"):
         board.reset()
     else:
-        board.exitGame()
+        menuSystem()
 
 def printHeader():
     print(" "*size,"╔═══════════════════════════════════════════════════════════╗")
@@ -434,10 +434,9 @@ def menuSystem():
         refreshScreen()
         try:
             print("\n","  "*size,"> Main Menu <")
-            print("\n"," "*size3,"Start game: [S]")
-            print("\n"," "*size4,"Leaderboard: [L]")
-            print("\n"," "*size5,"Help: [H]")
-            print("\n"," "*size6,"Exit: [Q]")
+            print("\n"," "*size2,"Start game: [S]")
+            print("\n"," "*size3,"Help: [H]")
+            print("\n"," "*size3,"Exit: [Q]")
             sys.stdout.write("\nChoose a menupoint > ")
             menuChoice = getchar()
             if menuChoice == "s":
@@ -499,10 +498,7 @@ def terminal_size():
 terminal_size()
 size = int((terminal_size() - 96) / 2)
 size2 = int(terminal_size() - 97)
-size3 = int(terminal_size() - 97)
-size4 = int(terminal_size() - 98)
-size5 = int(terminal_size() - 95)
-size6 = int(terminal_size() - 95)
+size3 = int(terminal_size() - 95)
 #refreshLoad()
 #board.updateLoad(0, "∎")
 refreshScreen()
